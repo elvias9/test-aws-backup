@@ -129,7 +129,7 @@ class TagReplicator:
         except botocore.exceptions.ClientError as e:
             if e.response['Error']['Code'] == "ResourceNotFoundException": 
                 #Try to get the tags from the recovery point
-                logger.error(f"Resource not fouund. Falling back to recovery_point_arn")
+                logger.error(f"Resource not found. Falling back to recovery_point_arn")
         
         if not 'Tags' in resource_tag_list or len(resource_tag_list['Tags']) == 0:
             logger.info('No tags extracted from original resource. Attempting tag extraction from recovery_point_arn')
@@ -300,8 +300,6 @@ class TagReplicator:
             logger.info(f"Ignore processing job with a status : {job_event_state}")
 
 ######################################################################
-
-
 #                        FUNCTIONAL LOGIC                            #
 ######################################################################
 
